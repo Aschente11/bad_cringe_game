@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjd2i687qbe24"]
+
+[ext_resource type="Script" uid="uid://b2rd1eq44bi1w" path="res://scrolling.gd" id="1_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b8jskx5dn7h7i" path="res://assets/iphone.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bhyl0lb4h16lx" path="res://assets/finger.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cfmbvc22i75uo" path="res://assets/hand.png" id="3_1bvp3"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1bvp3")
+
+[node name="Iphone" type="Sprite2D" parent="."]
+position = Vector2(305, 312)
+texture = ExtResource("1_ig7tw")
+
+[node name="Finger" type="Sprite2D" parent="."]
+position = Vector2(431, 476)
+scale = Vector2(0.717239, 0.69281)
+texture = ExtResource("2_h2yge")
+
+[node name="Hand" type="Sprite2D" parent="."]
+position = Vector2(196, 497)
+scale = Vector2(0.890052, 0.90939)
+texture = ExtResource("3_1bvp3")

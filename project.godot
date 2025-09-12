@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="bad_cringe_game"
+run/main_scene="uid://cjd2i687qbe24"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
