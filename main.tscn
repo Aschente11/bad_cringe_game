@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjd2i687qbe24"]
+[gd_scene load_steps=7 format=3 uid="uid://cjd2i687qbe24"]
 
 [ext_resource type="Script" uid="uid://b2rd1eq44bi1w" path="res://scrolling.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b8jskx5dn7h7i" path="res://assets/iphone.png" id="1_ig7tw"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_1bvp3"]
 file = "reel1.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_lquwl"]
+file = "reel2.ogg"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -28,7 +31,7 @@ position = Vector2(196, 497)
 scale = Vector2(0.890052, 0.90939)
 texture = ExtResource("3_1bvp3")
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+[node name="reel1" type="VideoStreamPlayer" parent="."]
 offset_left = 190.0
 offset_top = 49.0
 offset_right = 910.0
@@ -36,3 +39,14 @@ offset_bottom = 1327.0
 scale = Vector2(0.337924, 0.419777)
 stream = SubResource("VideoStreamTheora_1bvp3")
 autoplay = true
+loop = true
+
+[node name="reel2" type="VideoStreamPlayer" parent="."]
+offset_left = 190.0
+offset_top = 49.0
+offset_right = 910.0
+offset_bottom = 1327.0
+scale = Vector2(0.337924, 0.419777)
+stream = SubResource("VideoStreamTheora_lquwl")
+autoplay = true
+loop = true
