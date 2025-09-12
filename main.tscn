@@ -13,7 +13,7 @@ position = Vector2(305, 312)
 texture = ExtResource("1_ig7tw")
 
 [node name="Finger" type="Sprite2D" parent="."]
-position = Vector2(431, 476)
+position = Vector2(501, 518)
 scale = Vector2(0.717239, 0.69281)
 texture = ExtResource("2_h2yge")
 
