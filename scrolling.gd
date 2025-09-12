@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var finger = $Finger
-@onready var reels = [$reel1, $reel2]
+@onready var reels = [$reel1, $reel2, $reel3, $reel4, $reel5, $reel6, $reel7]
 
 var current_index: int = 0
 var finger_original_position: Vector2

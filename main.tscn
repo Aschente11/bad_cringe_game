@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjd2i687qbe24"]
+[gd_scene load_steps=12 format=3 uid="uid://cjd2i687qbe24"]
 
 [ext_resource type="Script" uid="uid://b2rd1eq44bi1w" path="res://scrolling.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b8jskx5dn7h7i" path="res://assets/iphone.png" id="1_ig7tw"]
@@ -10,6 +10,21 @@ file = "reel1.ogg"
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_lquwl"]
 file = "reel2.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_7mycd"]
+file = "reel3.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_272bh"]
+file = "reel4.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_5vw27"]
+file = "reel5.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_kek77"]
+file = "reel6.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4c57u"]
+file = "reel7.ogg"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -48,5 +63,55 @@ offset_right = 910.0
 offset_bottom = 1327.0
 scale = Vector2(0.337924, 0.419777)
 stream = SubResource("VideoStreamTheora_lquwl")
+autoplay = true
+loop = true
+
+[node name="reel3" type="VideoStreamPlayer" parent="."]
+offset_left = 190.0
+offset_top = 49.0
+offset_right = 910.0
+offset_bottom = 1327.0
+scale = Vector2(0.337924, 0.419777)
+stream = SubResource("VideoStreamTheora_7mycd")
+autoplay = true
+loop = true
+
+[node name="reel4" type="VideoStreamPlayer" parent="."]
+offset_left = 190.0
+offset_top = 49.0
+offset_right = 910.0
+offset_bottom = 1327.0
+scale = Vector2(0.337924, 0.419777)
+stream = SubResource("VideoStreamTheora_272bh")
+autoplay = true
+loop = true
+
+[node name="reel5" type="VideoStreamPlayer" parent="."]
+offset_left = 190.0
+offset_top = 49.0
+offset_right = 910.0
+offset_bottom = 1327.0
+scale = Vector2(0.337924, 0.419777)
+stream = SubResource("VideoStreamTheora_5vw27")
+autoplay = true
+loop = true
+
+[node name="reel6" type="VideoStreamPlayer" parent="."]
+offset_left = 190.0
+offset_top = 49.0
+offset_right = 910.0
+offset_bottom = 1327.0
+scale = Vector2(0.337924, 0.419777)
+stream = SubResource("VideoStreamTheora_kek77")
+autoplay = true
+loop = true
+
+[node name="reel7" type="VideoStreamPlayer" parent="."]
+offset_left = 190.0
+offset_top = 49.0
+offset_right = 910.0
+offset_bottom = 1327.0
+scale = Vector2(0.337924, 0.419777)
+stream = SubResource("VideoStreamTheora_4c57u")
 autoplay = true
 loop = true
