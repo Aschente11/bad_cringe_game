@@ -4,33 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://b8jskx5dn7h7i" path="res://assets/iphone.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bhyl0lb4h16lx" path="res://assets/finger.png" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cfmbvc22i75uo" path="res://assets/hand.png" id="3_1bvp3"]
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_1bvp3"]
-file = "reel1.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_lquwl"]
-file = "reel2.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_7mycd"]
-file = "reel3.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_272bh"]
-file = "reel4.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_5vw27"]
-file = "reel5.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_kek77"]
-file = "reel6.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4c57u"]
-file = "reel7.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_dg77c"]
-file = "reel9.ogg"
-
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_ycdy4"]
-file = "reel10.ogg"
+[ext_resource type="VideoStream" uid="uid://kbdqgi4tf5fr" path="res://reel1.ogv" id="5_ycdy4"]
+[ext_resource type="VideoStream" uid="uid://chucanwb6ayip" path="res://reel2.ogv" id="6_w48qg"]
+[ext_resource type="VideoStream" uid="uid://cs7v2tygi0diw" path="res://reel3.ogv" id="7_vivmo"]
+[ext_resource type="VideoStream" uid="uid://t82lxwh5fuok" path="res://reel4.ogv" id="8_2cqfq"]
+[ext_resource type="VideoStream" uid="uid://xvfkht1x7ryg" path="res://reel5.ogv" id="9_yaehf"]
+[ext_resource type="VideoStream" uid="uid://dg0not24a8v0r" path="res://reel6.ogv" id="10_074og"]
+[ext_resource type="VideoStream" uid="uid://nrr3a82frfhi" path="res://reel7.ogv" id="11_cegan"]
+[ext_resource type="VideoStream" uid="uid://diux8ut4xyruu" path="res://reel9.ogv" id="12_82xsv"]
+[ext_resource type="VideoStream" uid="uid://botatr8k5gweq" path="res://reel10.ogv" id="13_getpj"]
 
 [sub_resource type="Shader" id="Shader_donut"]
 code = "shader_type canvas_item;
@@ -119,7 +101,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1321.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_1bvp3")
+stream = ExtResource("5_ycdy4")
 autoplay = true
 loop = true
 
@@ -129,7 +111,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1323.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_lquwl")
+stream = ExtResource("6_w48qg")
 autoplay = true
 loop = true
 
@@ -139,7 +121,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1321.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_7mycd")
+stream = ExtResource("7_vivmo")
 autoplay = true
 loop = true
 
@@ -149,7 +131,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1321.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_272bh")
+stream = ExtResource("8_2cqfq")
 autoplay = true
 loop = true
 
@@ -159,7 +141,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1321.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_5vw27")
+stream = ExtResource("9_yaehf")
 autoplay = true
 loop = true
 
@@ -169,7 +151,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1321.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_kek77")
+stream = ExtResource("10_074og")
 autoplay = true
 loop = true
 
@@ -179,7 +161,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1321.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_4c57u")
+stream = ExtResource("11_cegan")
 autoplay = true
 loop = true
 
@@ -189,7 +171,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1323.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_dg77c")
+stream = ExtResource("12_82xsv")
 autoplay = true
 loop = true
 
@@ -199,7 +181,7 @@ offset_top = 43.0
 offset_right = 907.0
 offset_bottom = 1323.0
 scale = Vector2(0.339, 0.421)
-stream = SubResource("VideoStreamTheora_ycdy4")
+stream = ExtResource("13_getpj")
 autoplay = true
 loop = true
 
