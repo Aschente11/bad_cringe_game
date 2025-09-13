@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvnh87ybxq48s"]
+
+[ext_resource type="FontFile" uid="uid://ced6nuvk5ptga" path="res://assets/TrajanPro-Regular.ttf" id="1_wao2c"]
+
+[node name="Win" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.84, 16.52)
+color = Color(3.85046e-07, 0.312029, 0.498405, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 245.0
+offset_right = 1595.0
+offset_bottom = 345.0
+theme_override_colors/font_color = Color(0.882353, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 70
+text = "YOU WIN!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 280.0
+offset_top = 376.0
+offset_right = 1651.0
+offset_bottom = 476.0
+scale = Vector2(0.44, 0.44)
+theme_override_colors/font_color = Color(0.882353, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 70
+text = "Congrats for being unproductive"

@@ -1,0 +1,320 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddto4ptrh2b0h"]
+
+[ext_resource type="Script" uid="uid://repu4pfsuwp4" path="res://start.gd" id="1_ots34"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ots34")
+
+[node name="StartButtonContainer" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 436.0
+offset_top = 492.0
+offset_right = 716.0
+offset_bottom = 562.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonGlow" type="ColorRect" parent="StartButtonContainer"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.3, 0.5, 0.3)
+
+[node name="ButtonAccent" type="ColorRect" parent="StartButtonContainer"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0349066
+color = Color(1, 0.4, 0.6, 0.6)
+
+[node name="ButtonBg" type="ColorRect" parent="StartButtonContainer"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9, 0.2, 0.4, 0.95)
+
+[node name="StartButton" type="Button" parent="StartButtonContainer"]
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 26
+text = "START SCROLLING"
+flat = true
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.00012207
+offset_top = 1.80811
+offset_right = 1152.0
+offset_bottom = 649.808
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="GradientOverlay" type="ColorRect" parent="."]
+z_index = -9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.00012207
+offset_top = 1.80811
+offset_right = 1152.0
+offset_bottom = 649.808
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.2, 0.05, 0.15, 0.4)
+
+[node name="AnimatedBg1" type="ColorRect" parent="."]
+z_index = -8
+offset_left = -99.9999
+offset_top = 101.808
+offset_right = 300.0
+offset_bottom = 501.808
+rotation = 0.523599
+mouse_filter = 2
+color = Color(1, 0.1, 0.3, 0.05)
+
+[node name="AnimatedBg2" type="ColorRect" parent="."]
+z_index = -8
+offset_left = 800.0
+offset_top = -48.1919
+offset_right = 1200.0
+offset_bottom = 351.808
+rotation = -0.349066
+mouse_filter = 2
+color = Color(0.1, 0.3, 1, 0.03)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.00012207
+offset_top = 1.80811
+offset_right = 1152.0
+offset_bottom = 649.808
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainContainer" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleContainer" type="Control" parent="UI/MainContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = -30.0
+offset_right = 280.0
+offset_bottom = 90.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="TitleGlow" type="ColorRect" parent="UI/MainContainer/TitleContainer"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.2, 0.4, 0.2)
+
+[node name="TitleBg" type="ColorRect" parent="UI/MainContainer/TitleContainer"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.05, 0.1, 0.8)
+
+[node name="TitleLabel" type="Label" parent="UI/MainContainer/TitleContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.6, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.1, 0.3, 0.8)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 52
+text = "SCROLL FOR UR LIFE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionContainer" type="Control" parent="UI/MainContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -62.0
+offset_right = 320.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InstructionBg" type="ColorRect" parent="UI/MainContainer/InstructionContainer"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0174533
+color = Color(0.08, 0.08, 0.15, 0.9)
+
+[node name="InstructionAccent" type="ColorRect" parent="UI/MainContainer/InstructionContainer"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0174533
+color = Color(0.3, 0.1, 0.2, 0.4)
+
+[node name="ContentVBox" type="VBoxContainer" parent="UI/MainContainer/InstructionContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = -30.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HowToPlayTitle" type="Label" parent="UI/MainContainer/InstructionContainer/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+text = "HOW TO SURVIVE"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="UI/MainContainer/InstructionContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Instruction1" type="RichTextLabel" parent="UI/MainContainer/InstructionContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "• [color=#FF6B9D][b]TAP THE KEYS[/b][/color] that appear on screen to scroll past cringe reels"
+fit_content = true
+
+[node name="Instruction2" type="RichTextLabel" parent="UI/MainContainer/InstructionContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "• Miss too many and your [color=#FF4757][b]CRINGE BAR[/b][/color] fills up!"
+fit_content = true
+
+[node name="Instruction3" type="RichTextLabel" parent="UI/MainContainer/InstructionContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "• [color=#FF3838][b]MAX OUT THE BAR[/b][/color] and you're stuck watching the full reel"
+fit_content = true
+
+[node name="Instruction4" type="RichTextLabel" parent="UI/MainContainer/InstructionContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "• [color=#70FF70][b]SURVIVE[/b][/color] as long as you can!"
+fit_content = true
+
+[connection signal="pressed" from="StartButtonContainer/StartButton" to="." method="_on_start_button_pressed"]

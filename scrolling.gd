@@ -23,8 +23,9 @@ extends Node2D
 var watched_reels = {}  # Dictionary to track which reels have been fully watched
 var current_reel_watched = false  # Has current reel been watched completely
 var reel_watch_timer = 0.0
-var reel_duration = 5.0  # Adjust this to match your reel duration
+var reel_duration = 15.0  # Adjust this to match your reel duration
 var failed_qte_on_current_reel = false  # Track if QTE was failed on current reel
+var win_triggered = false  # Prevent multiple win triggers
 
 var current_index: int = 0
 var finger_original_position: Vector2
@@ -270,6 +271,9 @@ func _process(delta):
 			watched_reels[current_index] = true
 			print("Reel " + str(current_index) + " has been fully watched! Now skippable.")
 			
+			# Check for win condition after marking reel as watched
+			check_win_condition()
+			
 func _input(event):
 	if qte_active and event is InputEventKey and event.pressed:
 		handle_qte_input(event.keycode)
@@ -365,6 +369,7 @@ func complete_qte():
 	# Reduce cringe as reward
 	cringe_level = max(0, cringe_level - 5)
 	update_cringe_display()
+
 func fail_qte():
 	qte_active = false
 	failed_qte_on_current_reel = true  # Mark that QTE was failed
@@ -392,7 +397,81 @@ func fail_qte():
 	update_cringe_display()
 	animate_cringe_effect()
 
-# Keep all existing cringe and animation functions unchanged...
+# NEW FUNCTION: Check if all reels have been watched
+func check_win_condition():
+	if win_triggered:
+		return
+		
+	# Check if all reels have been watched
+	var total_reels = reels.size()
+	var watched_count = watched_reels.size()
+	
+	print("Watched reels: " + str(watched_count) + "/" + str(total_reels))
+	
+	if watched_count >= total_reels:
+		# Verify that all reel indices are actually watched
+		var all_watched = true
+		for i in range(total_reels):
+			if not watched_reels.get(i, false):
+				all_watched = false
+				break
+		
+		if all_watched:
+			trigger_win()
+
+# NEW FUNCTION: Trigger the win condition
+func trigger_win():
+	if win_triggered:
+		return
+		
+	win_triggered = true
+	qte_active = false  # Stop any active QTE
+	
+	print("All reels watched! You win!")
+	
+	# Show win message and transition
+	show_win_message()
+	
+	# Optional: Add celebratory screen effect
+	create_screen_flash(Color(1, 1, 0.5, 0.3))
+	
+	# Wait a moment then transition to win scene
+	var tween = create_tween()
+	tween.tween_interval(2.0)  # Show win message for 2 seconds
+	tween.tween_callback(func():
+		get_tree().change_scene_to_file("res://win.tscn")
+	)
+
+# NEW FUNCTION: Show win message
+func show_win_message():
+	var win_label = Label.new()
+	get_parent().add_child(win_label)
+	
+	win_label.text = "🎉 ALL REELS WATCHED! 🎉\nYOU WIN!"
+	win_label.add_theme_font_size_override("font_size", 32)
+	win_label.add_theme_color_override("font_color", Color(1, 1, 0.4, 1))
+	
+	# Position it in the center of the screen
+	var viewport_size = get_viewport().get_visible_rect().size
+	win_label.position = Vector2(viewport_size.x / 2 - 150, viewport_size.y / 2 - 40)
+	win_label.z_index = 100
+	
+	# Animate the message
+	win_label.modulate.a = 0
+	win_label.scale = Vector2.ZERO
+	
+	var msg_tween = create_tween()
+	msg_tween.set_parallel(true)
+	msg_tween.tween_property(win_label, "modulate:a", 1.0, 0.5)
+	msg_tween.tween_property(win_label, "scale", Vector2(1.2, 1.2), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
+	# Gentle bounce animation
+	await get_tree().create_timer(0.8).timeout
+	var bounce_tween = create_tween()
+	bounce_tween.set_loops()
+	bounce_tween.tween_property(win_label, "scale", Vector2(1.25, 1.25), 0.6)
+	bounce_tween.tween_property(win_label, "scale", Vector2(1.15, 1.15), 0.6)
+
 func update_cringe_display():
 	if cringe_fill:
 		var fill_percentage = float(cringe_level) / float(max_cringe)
@@ -463,7 +542,6 @@ func animate_finger_swipe_down():
 		show_reel_by_sequence(sequence_index + 1)
 	)
 
-# Modify your animate_finger_swipe_up function:
 func animate_finger_swipe_up():
 	# Don't allow going back if current reel is unskippable
 	if failed_qte_on_current_reel and not current_reel_watched:
@@ -485,6 +563,7 @@ func animate_finger_swipe_up():
 		is_animating = false
 		show_reel_by_sequence(sequence_index - 1)
 	)
+
 func trigger_game_over():
 	game_over_triggered = true
 	qte_active = false  # Stop any active QTE
@@ -522,7 +601,6 @@ func animate_skip_denied():
 	# Optional: Show a temporary message
 	show_unskippable_message()
 
-# Add this function to show a message when skip is denied:
 func show_unskippable_message():
 	# Create a temporary label to show the message
 	var message_label = Label.new()
