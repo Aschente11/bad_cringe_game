@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjd2i687qbe24"]
+[gd_scene load_steps=17 format=3 uid="uid://cjd2i687qbe24"]
 
 [ext_resource type="Script" uid="uid://b2rd1eq44bi1w" path="res://scrolling.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b8jskx5dn7h7i" path="res://assets/iphone.png" id="1_ig7tw"]
@@ -25,6 +25,73 @@ file = "reel6.ogg"
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4c57u"]
 file = "reel7.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_dg77c"]
+file = "reel9.ogg"
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_ycdy4"]
+file = "reel10.ogg"
+
+[sub_resource type="Shader" id="Shader_donut"]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 donut_color : source_color = vec4(0.2, 1.0, 0.6, 0.8);
+uniform float thickness : hint_range(0.1, 0.5) = 0.15;
+uniform float smoothness : hint_range(0.001, 0.1) = 0.02;
+uniform float start_angle : hint_range(0.0, 360.0) = -90.0;
+
+vec2 rotate(vec2 uv, float angle) {
+    float c = cos(angle);
+    float s = sin(angle);
+    return mat2(vec2(c, -s), vec2(s, c)) * uv;
+}
+
+void fragment() {
+    vec2 center = vec2(0.5, 0.5);
+    vec2 uv = UV - center;
+    
+    // Rotate UV to start from top
+    uv = rotate(uv, radians(start_angle));
+    
+    float dist = length(uv);
+    float angle = atan(uv.y, uv.x);
+    
+    // Normalize angle to 0-1 range
+    float norm_angle = (angle + PI) / (2.0 * PI);
+    
+    // Create donut shape
+    float outer_ring = smoothstep(0.5, 0.5 - smoothness, dist);
+    float inner_ring = smoothstep(0.5 - thickness, 0.5 - thickness - smoothness, dist);
+    float donut = outer_ring - inner_ring;
+    
+    // Progress mask
+    float progress_mask = step(norm_angle, progress);
+    
+    // Combine everything
+    float alpha = donut * progress_mask * donut_color.a;
+    
+    // Add subtle glow effect
+    float glow = exp(-dist * 3.0) * 0.1;
+    
+    COLOR = vec4(donut_color.rgb + glow, alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_countdown"]
+shader = SubResource("Shader_donut")
+shader_parameter/progress = 1.0
+shader_parameter/donut_color = Color(1, 0.8, 0.4, 0.6)
+shader_parameter/thickness = 0.08
+shader_parameter/smoothness = 0.02
+shader_parameter/start_angle = -90.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_progress"]
+shader = SubResource("Shader_donut")
+shader_parameter/progress = 0.0
+shader_parameter/donut_color = Color(0.2, 1, 0.6, 0.8)
+shader_parameter/thickness = 0.12
+shader_parameter/smoothness = 0.02
+shader_parameter/start_angle = -90.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -116,9 +183,222 @@ stream = SubResource("VideoStreamTheora_4c57u")
 autoplay = true
 loop = true
 
+[node name="reel9" type="VideoStreamPlayer" parent="."]
+offset_left = 187.0
+offset_top = 43.0
+offset_right = 907.0
+offset_bottom = 1323.0
+scale = Vector2(0.339, 0.421)
+stream = SubResource("VideoStreamTheora_dg77c")
+autoplay = true
+loop = true
+
+[node name="reel10" type="VideoStreamPlayer" parent="."]
+offset_left = 187.0
+offset_top = 43.0
+offset_right = 907.0
+offset_bottom = 1323.0
+scale = Vector2(0.339, 0.421)
+stream = SubResource("VideoStreamTheora_ycdy4")
+autoplay = true
+loop = true
+
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.84, 16.52)
 color = Color(0.819608, 0.827451, 0.764706, 1)
+
+[node name="QTE_UI" type="CanvasLayer" parent="."]
+
+[node name="QTECircle" type="Control" parent="QTE_UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountdownDonut" type="TextureRect" parent="QTE_UI/QTECircle"]
+material = SubResource("ShaderMaterial_countdown")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressDonut" type="TextureRect" parent="QTE_UI/QTECircle"]
+material = SubResource("ShaderMaterial_progress")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="QTE_UI/QTECircle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.1, 0.85)
+
+[node name="CenterContent" type="VBoxContainer" parent="QTE_UI/QTECircle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountdownLabel" type="Label" parent="QTE_UI/QTECircle/CenterContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "3.0s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeysLabel" type="Label" parent="QTE_UI/QTECircle/CenterContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "E+R"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountLabel" type="Label" parent="QTE_UI/QTECircle/CenterContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "0/14"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CringeUI" type="CanvasLayer" parent="."]
+
+[node name="CringeBar" type="Control" parent="CringeUI"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 50.0
+offset_right = -20.0
+offset_bottom = 350.0
+grow_horizontal = 0
+
+[node name="BarBackground" type="ColorRect" parent="CringeUI/CringeBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.6)
+
+[node name="BarBorder" type="ColorRect" parent="CringeUI/CringeBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3, 0.3, 0.3, 0.8)
+
+[node name="BarInner" type="ColorRect" parent="CringeUI/CringeBar/BarBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.05, 0.8)
+
+[node name="CringeFill" type="ColorRect" parent="CringeUI/CringeBar"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -296.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0, 1, 0.5, 0.8)
+
+[node name="CringeIcon" type="Label" parent="CringeUI/CringeBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "😬"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CringeValue" type="Label" parent="CringeUI/CringeBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = 10.0
+offset_right = 15.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

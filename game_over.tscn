@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cska3o1xfv50f"]
+
+[ext_resource type="FontFile" uid="uid://ced6nuvk5ptga" path="res://assets/TrajanPro-Regular.ttf" id="1_ccer4"]
+[ext_resource type="Texture2D" uid="uid://crccinbilppqh" path="res://assets/skull.png" id="2_8u835"]
+[ext_resource type="AudioStream" uid="uid://db61j6msgd55m" path="res://assets/game_over.mp3" id="3_ftari"]
+
+[node name="GameOver" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.84, 16.52)
+color = Color(0.819608, 0.827451, 0.764706, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 138.0
+offset_top = 222.0
+offset_right = 1349.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ccer4")
+theme_override_font_sizes/font_size = 70
+text = "YOU DIED OF CRINGE"
+
+[node name="Skull" type="Sprite2D" parent="."]
+position = Vector2(422.04, 412)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("2_8u835")
+
+[node name="Skull2" type="Sprite2D" parent="."]
+position = Vector2(564, 412)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("2_8u835")
+
+[node name="Skull3" type="Sprite2D" parent="."]
+position = Vector2(704, 412)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("2_8u835")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ftari")
+autoplay = true
