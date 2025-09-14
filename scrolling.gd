@@ -20,6 +20,11 @@ extends Node2D
 @onready var cringe_value = $CringeUI/CringeBar/CringeValue
 @onready var cringe_icon = $CringeUI/CringeBar/CringeIcon
 
+# Player Reaction Videos
+@onready var video_player1 : VideoStreamPlayer = $PlayerIdle
+@onready var video_player2 : VideoStreamPlayer = $PlayerCringe
+@onready var video_player3 : VideoStreamPlayer = $PlayerDyingofCringe
+
 var watched_reels = {}  # Dictionary to track which reels have been fully watched
 var current_reel_watched = false  # Has current reel been watched completely
 var reel_watch_timer = 0.0
@@ -260,6 +265,17 @@ func _process(delta):
 		
 		if qte_timer <= 0:
 			fail_qte()
+	
+	#Player Reaction Video Players
+	video_player1.visible = true
+	video_player2.visible = false
+	video_player3.visible = false
+	
+	if cringe_level >= 10 and cringe_level < 60:
+		video_player2.visible = true
+	elif cringe_level >= 60:
+		video_player2.visible = false
+		video_player3.visible = true
 	
 	# Track reel watching time if QTE was failed and reel hasn't been watched
 	if failed_qte_on_current_reel and not current_reel_watched:

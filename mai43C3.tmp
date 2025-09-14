@@ -389,6 +389,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayerIdle" type="VideoStreamPlayer" parent="."]
+visible = false
 offset_left = 860.0
 offset_top = 55.0
 offset_right = 1948.0
@@ -399,6 +400,7 @@ autoplay = true
 loop = true
 
 [node name="PlayerCringe" type="VideoStreamPlayer" parent="."]
+visible = false
 offset_left = 860.0
 offset_top = 55.0
 offset_right = 1948.0
@@ -409,6 +411,7 @@ autoplay = true
 loop = true
 
 [node name="PlayerDyingofCringe" type="VideoStreamPlayer" parent="."]
+visible = false
 offset_left = 860.0
 offset_top = 55.0
 offset_right = 1948.0
